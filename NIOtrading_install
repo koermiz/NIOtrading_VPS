@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# install apps
+
+sudo apt-get install xorg -y
+sudo apt-get install lxde-core -y
+sudo apt-get install libgconf-2-4 
+sudo apt-get install wget 
+sudo apt-get install ssh 
+sudo apt-get install tightvncserver
+sudo apt-get install unrar 
+sudo apt-get install unzip
+sudo apt-get install firefox
+sudo apt-get update -y
+clear 
+
+
+# set up vnc
+
+echo "======================================="
+
+echo "Set up password for your VNC Connection"
+
+echo "======================================="
+
+tightvncserver :1 
+
+sudo rm ~/.vnc/xstartup 
+
+tightvncserver -kill :1 
+
+cat >> ~/.vnc/xstartup << EOF
+
+#!/bin/sh
+
+
+
+xrdb $HOME/.Xresources
+
+xsetroot -solid grey
+
+#x-terminal-emulator -geometry 1280x800+10+10 -ls -title "$VNCDESKTOP
+
+#Desktop" &
+
+x-window-manager &
+
+lxterminal &
+
+/usr/bin/lxsession -s LXDE &
+
+# Fix to make GNOME work
+
+export XKL_XMODMAP_DISABLE=1
+
+/etc/X11/Xsession
+
+EOF
+
+
+chmod +x ~/.vnc/xstartup 
+
+
+tightvncserver :1 
+
+
+# download and unrar NIOtrading
+
+wget https://auton.io/downloads/autonio-linux-x64.rar
+
+unrar x autonio-linux-x64.rar
+
+chmod +x ~/autonio-linux-x64/autonio 
+
+
+# download and set icon
+
+wget https://www.dropbox.com/s/w0yeqz0wksoi3me/autonio_icon.zip?dl=0 -O temp.zip; unzip temp.zip; rm temp.zip
+
+mv autonio_icon.png Pictures/
+
+touch ~/Desktop/NIOtrading
+
+cat >> ~/Desktop/NIOtrading << EOF
+
+[Desktop Entry]
+
+Encoding=UTF-8
+
+Name=NIOtrading
+
+Comment=Launch DirSyncPro
+
+Exec=./autonio-linux-x64/autonio
+
+Icon=/root/Pictures/autonio_icon.png
+
+Type=Application
+
+EOF
+
+chmod +x ~/Desktop/NIOtrading
+
+
+
+clear 
+
+
+
+
+
+echo "============================================================================="
+
+echo "   Now open Putty, create a SSH Tunnel and connect via TightVNC viewer to:   " 
+
+echo "	 localhost:5901 and enter the password you set up earlier.		   "						 
+
+echo "                                                                             "
+
+echo "            Have fun trading with NIOtrading by Autonio!!!                   "
+
+echo "============================================================================="
+
+
+
+
