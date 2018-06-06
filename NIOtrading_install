@@ -67,9 +67,7 @@ tightvncserver :1
 
 # download and unrar NIOtrading
 
-wget https://auton.io/downloads/autonio-linux-x64.rar
-
-unrar x autonio-linux-x64.rar
+wget https://auton.io/downloads/autonio-linux-x64.zip -O temp.zip; unzip temp.zip; rm temp.zip
 
 chmod +x ~/autonio-linux-x64/autonio 
 
