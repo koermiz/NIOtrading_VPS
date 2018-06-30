@@ -24,11 +24,11 @@ echo "Set up password for your VNC Connection"
 
 echo "======================================="
 
-tightvncserver :1 
+tightvncserver :1 &&
 
-sudo rm ~/.vnc/xstartup 
+sudo rm ~/.vnc/xstartup &&
 
-tightvncserver -kill :1 
+tightvncserver -kill :1 &&
 
 cat >> ~/.vnc/xstartup << EOF
 
@@ -59,26 +59,26 @@ export XKL_XMODMAP_DISABLE=1
 EOF
 
 
-chmod +x ~/.vnc/xstartup 
+chmod +x ~/.vnc/xstartup &&
 
 
-tightvncserver :1 
+tightvncserver :1 &&
 
 
 # download and unzip NIOtrading
 
-wget https://auton.io/downloads/autonio-linux-x64.zip -O temp.zip; unzip temp.zip; rm temp.zip
+wget https://auton.io/downloads/autonio-linux-x64.zip -O temp.zip; unzip temp.zip; rm temp.zip &&
 
-chmod +x ~/autonio-linux-x64/autonio 
+chmod +x ~/autonio-linux-x64/autonio &&
 
 
 # download and set icon
 
 wget https://www.dropbox.com/s/w0yeqz0wksoi3me/autonio_icon.zip?dl=0 -O temp.zip; unzip temp.zip; rm temp.zip
 
-mv autonio_icon.png Pictures/
+mv autonio_icon.png Pictures/ &&
 
-touch ~/Desktop/NIOtrading
+touch ~/Desktop/NIOtrading &&
 
 cat >> ~/Desktop/NIOtrading << EOF
 
@@ -98,7 +98,7 @@ Type=Application
 
 EOF
 
-chmod +x ~/Desktop/NIOtrading
+chmod +x ~/Desktop/NIOtrading &&
 
 
 
